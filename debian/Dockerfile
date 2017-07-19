@@ -27,7 +27,8 @@ RUN  useradd -m -s /bin/bash linuxbrew \
 USER linuxbrew
 WORKDIR /home/linuxbrew
 ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH \
-    SHELL=/bin/bash
+    SHELL=/bin/bash \
+    EDITOR=vim
 
 # Install Linuxbrew from github
 RUN git clone https://github.com/Linuxbrew/brew.git .linuxbrew
