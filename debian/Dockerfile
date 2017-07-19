@@ -18,6 +18,9 @@ ENV LANG en_US.UTF-8
 RUN apt-get install -y build-essential curl file git python-setuptools \
   && apt-get clean
 
+#Install
+RUN apt-get install -y sudo vim htop
+
 # Create a linuxbrew user
 RUN  useradd -m -s /bin/bash linuxbrew \
      && echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
