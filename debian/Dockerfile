@@ -35,3 +35,6 @@ RUN git clone https://github.com/Linuxbrew/brew.git .linuxbrew
 
 # Install portable-ruby by running brew for the first time
 RUN brew doctor
+
+# Add a volume for storing jdk8 sources and build
+VOLUME /home/linuxbrew/jdk8
