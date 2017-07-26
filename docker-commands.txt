@@ -1,6 +1,13 @@
+# References
 https://penandpants.com/2014/03/09/docker-via-homebrew/
 https://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/
+https://nickcharlton.net/posts/docker-via-homebrew.html
 
+# docker-machine
+docker-machine create main
+eval $(docker-machine env main)
+
+# Boot2docker
 boot2docker init
 boot2docker up
 
@@ -9,12 +16,15 @@ boot2docker up
     export DOCKER_HOST=tcp://192.168.59.103:2376
 
 
+# Build image
 make debian
+
+# Run container
 docker run -d linuxbrew/debian tail -f /dev/null
 
 OR 
 
-docker run -it linuxbrew/debiancd 
+docker run -it linuxbrew/debian
 
 
 docker-enter() { boot2docker ssh -t "[ -f /var/lib/boot2docker/nsenter ] || docker run --rm -v /var/lib/boot2docker/:/target jpetazzo/nsenter; sudo /var/lib/boot2docker/docker-enter $@"; }
@@ -23,7 +33,7 @@ docker-enter f6f4af30be5d
 
 su - linuxbrew
 
-
+# Miscelanous docker commands
 docker ps
 docker stop  f6f4af30be5d
 docker images
@@ -33,5 +43,6 @@ docker kill  $(docker ps -q)
 docker volume create jdk8
 docker run  -v jdk8:/home/linuxbrew/jdk8 -it linuxbrew/debian
 
+# Build jdk8
 wget -c --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
 
