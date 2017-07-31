@@ -5,6 +5,7 @@ https://nickcharlton.net/posts/docker-via-homebrew.html
 
 # docker-machine
 docker-machine create main
+docker-machine start main
 eval $(docker-machine env main)
 
 # Boot2docker

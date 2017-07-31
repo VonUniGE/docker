@@ -18,7 +18,7 @@ ENV LANG en_US.UTF-8
 RUN apt-get install -y build-essential curl file git python-setuptools \
   && apt-get clean
 
-#Install
+#Installed useful tools
 RUN apt-get install -y sudo vim htop
 
 # Create a linuxbrew user
@@ -35,6 +35,13 @@ RUN git clone https://github.com/Linuxbrew/brew.git .linuxbrew
 
 # Install portable-ruby by running brew for the first time
 RUN brew doctor
+
+# Install tools for compiling jdk8
+brew install mercurial cpio gzip
+
+# Make symlinks
+RUN ln -s /home/linuxbrew/.linuxbrew/bin/gzip /home/linuxbrew/.linuxbrew/bin/zip \
+ && ln -s /home/linuxbrew/.linuxbrew/bin/gunzip /home/linuxbrew/.linuxbrew/bin/unzip
 
 # Add a volume for storing jdk8 sources and build
 VOLUME /home/linuxbrew/jdk8
