@@ -37,7 +37,7 @@ RUN git clone https://github.com/Linuxbrew/brew.git .linuxbrew
 RUN brew doctor
 
 # Install tools for compiling jdk8
-brew install mercurial cpio gzip
+RUN brew install mercurial cpio gzip
 
 # Make symlinks
 RUN ln -s /home/linuxbrew/.linuxbrew/bin/gzip /home/linuxbrew/.linuxbrew/bin/zip \
