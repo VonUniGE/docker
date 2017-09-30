@@ -47,3 +47,13 @@ docker run  -v jdk8:/home/linuxbrew/jdk8 -it linuxbrew/debian
 # Build jdk8
 wget -c --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
 
+# Jdk 7
+wget http://ie.archive.ubuntu.com/funtoo/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz
+
+# Configure
+. ./configure --with-boot-jdk=jdk1.7.0_80
+
+# Debian dependencies
+sudo apt-get install libxext-dev libxrender-dev libxtst-dev libxt-dev
+sudo apt-get install libcups2-dev
+sudo apt-get install libfreetype6-dev # Not working
