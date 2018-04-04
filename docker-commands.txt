@@ -8,39 +8,22 @@ docker-machine create main
 docker-machine start main
 eval $(docker-machine env main)
 
-# Boot2docker
-boot2docker init
-boot2docker up
-
-    export DOCKER_CERT_PATH=/Users/von/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
-    export DOCKER_HOST=tcp://192.168.59.103:2376
-
-
 # Build image
-make debian
+cd debian && docker build -t linuxbrew/debian .
 
 # Run container
-docker run -d linuxbrew/debian tail -f /dev/null
-
-OR 
-
 docker run -it linuxbrew/debian
 
-
-docker-enter() { boot2docker ssh -t "[ -f /var/lib/boot2docker/nsenter ] || docker run --rm -v /var/lib/boot2docker/:/target jpetazzo/nsenter; sudo /var/lib/boot2docker/docker-enter $@"; }
-
-docker-enter f6f4af30be5d
-
 su - linuxbrew
+
+# Tag existing official image
+docker tag 14e19013edbd linuxbrew/debian:official
 
 # Miscelanous docker commands
 docker ps
 docker stop  f6f4af30be5d
 docker images
-
 docker kill  $(docker ps -q)
-
 docker volume create jdk8
 docker run  -v jdk8:/home/linuxbrew/jdk8 -it linuxbrew/debian
 
