@@ -9,7 +9,7 @@ docker-machine start main
 eval $(docker-machine env main)
 
 # Build image
-cd debian && docker build -t linuxbrew/debian .
+docker build -t linuxbrew/debian -f debian/Dockerfile debian
 
 # Run container
 docker run -it linuxbrew/debian
