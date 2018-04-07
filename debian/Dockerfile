@@ -8,7 +8,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install minimal debian packages listed in Linuxbrew documentation
 # Set up UTF-8
 RUN apt-get update && \
-    apt-get install -y apt-utils locales build-essential curl file git python-setuptools && \
+    apt-get install -y --no-install-recommends apt-utils locales \
+    build-essential curl file git python-setuptools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
